@@ -1,0 +1,18 @@
+En el fichero de configuracion config.inc.php, teneis que indicar el nombre de
+la base de datos, usuario y contraseña.
+
+
+la tabla que teneis que crear dentro de la base de datos se llama Users:
+
+CREATE TABLE IF NOT EXISTS `Users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(50) DEFAULT NULL,
+  `user` varchar(29) NOT NULL,
+  `password` varchar(32) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+
+
+para crear el usuario Administrador con usuario "admin" con contraseña "admin":
+
+INSERT INTO  `Users` (`id`, `username`, `user`, `password`) VALUES ('1', 'Administrador', 'admin', MD5('adminLaCasaAzul'));

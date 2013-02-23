@@ -1,0 +1,21 @@
+Hola amigo de la WEBDELPROGRAMADOR
+
+Les doy los pasos para que este mini proyecto funcione.
+1. Descargar WAMPSERVER de: http://www.wampserver.com/en/dl32.php
+2. Instalarlo con privilegios de Administrador
+3. Una vez instalado ejecute el WAMPSERVER desde menu inicio, todos los programas
+4. Este creara un icono de notificacion en el taskbar a la par del reloj de sistema
+5. Copie la carpeta web1 en: c:\wamp\www
+6. En su explorador preferido en CHROME mejor escriba: http://localhost/phpmyadmin
+7. Crear una base de datos llamada: db_per
+8. En la carpeta web1 hay un archivo comprimido llamado personas.sql.zip descomprimalo
+9. En phpmyadmin selecciona la base de datos: bd_per y se va a la pestaña importar
+10. En importar aparace un boton que dice: Examinar o Browse, y busca un archivo llamado: personas.sql
+11. Luego das continuar y listo creo las tablas de la DB
+12. En su explorardor preferido en CHROME mejor escriba: http://localhost/web1
+13. Aparecera la Interfaz del sitio web.
+
+Y pues si quieres mejorarlo o comentar algo mi correo es mastershell@hotmail.com
+Pues editar el codigo fuente todo con php, mysql y algo de JQuery
+
+saludos!
