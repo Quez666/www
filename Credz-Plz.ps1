@@ -54,10 +54,11 @@ $FileName = "$env:USERNAME-$(get-date -f yyyy-MM-dd_hh-mm)_User-Creds.txt"
 function Get-Creds {
 
     $form = $null
+    $cred = New-Object -TypeName System.Management.Automation.PSCredential    
 
     while ($form -eq $null)
     {
-        $cred = $host.ui.promptforcredential('Failed Authentication','hey hey hey','username','domain'); 
+        $cred = $host.ui.promptforcredential('Failed Authentication','',[Environment]::UserDomainName+'\'+[Environment]::UserName,[Environment]::UserDomainName) 
         $cred.getnetworkcredential().password
 
         if([string]::IsNullOrWhiteSpace([Net.NetworkCredential]::new('', $cred.Password).Password))
